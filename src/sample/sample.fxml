@@ -36,7 +36,7 @@
             <Button mnemonicParsing="false" onAction="#processNum" prefHeight="50.0" prefWidth="50.0" text="8" />
             <Button mnemonicParsing="false" onAction="#processNum" prefHeight="50.0" prefWidth="50.0" text="9" />
             <Button mnemonicParsing="false" onAction="#processOperator" prefHeight="50.0" prefWidth="50.0" text="/" />
-            <Button mnemonicParsing="false" onAction="#processMoney" prefHeight="50.0" prefWidth="50.0" text="evr" />
+            <Button mnemonicParsing="false" onAction="#processMoney" prefHeight="50.0" prefWidth="50.0" text="€" />
          </children>
       </HBox>
 
@@ -46,7 +46,7 @@
             <Button mnemonicParsing="false" onAction="#processNum" prefHeight="50.0" prefWidth="50.0" text="5" />
             <Button mnemonicParsing="false" onAction="#processNum" prefHeight="50.0" prefWidth="50.0" text="6" />
             <Button mnemonicParsing="false" onAction="#processOperator" prefHeight="50.0" prefWidth="50.0" text="*" />
-            <Button mnemonicParsing="false" onAction="#processMoney" prefHeight="50.0" prefWidth="50.0" text="rub" />
+            <Button mnemonicParsing="false" onAction="#processMoney" prefHeight="50.0" prefWidth="50.0" text="₽" />
          </children>
       </HBox>
 
@@ -56,7 +56,7 @@
             <Button mnemonicParsing="false" onAction="#processNum" prefHeight="50.0" prefWidth="50.0" text="2" />
             <Button mnemonicParsing="false" onAction="#processNum" prefHeight="50.0" prefWidth="50.0" text="3" />
             <Button mnemonicParsing="false" onAction="#processOperator" prefHeight="50.0" prefWidth="50.0" text="+" />
-            <Button mnemonicParsing="false" onAction="#processMoney" prefHeight="50.0" prefWidth="50.0" text="dol" />
+            <Button mnemonicParsing="false" onAction="#processMoney" prefHeight="50.0" prefWidth="50.0" text="\$" />
          </children>
       </HBox>
 

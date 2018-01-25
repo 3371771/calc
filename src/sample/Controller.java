@@ -20,13 +20,15 @@ public class Controller {
     private Text output ;
     private double num1 = 0;
     private double num2 = 0;
+    int trigger = 0;
 
 
 
-    private String prev;
+    private int prev;
     private String result;
 
     private boolean start = true;
+    private boolean clik = false;
 
     private String operator = "";
     private Model model = new Model();
@@ -75,48 +77,55 @@ public class Controller {
         start = false;
     }
 
-    @FXML
-        private void processConvert (ActionEvent event) throws IOException {
 
-//        int index = output.getText().indexOf(" ");
-//
-//        String value3 = (output.getText().substring(0,index));
-//        System.out.println(output.getText());
-//        num1 = Double.parseDouble(value3);
-//
-//       result = (output.getText().substring(output.getText().lastIndexOf(" ")+1));prev = "";
-//
-//        output.setText(String.valueOf(model.convert(num1,prev,result)));
-//        operator = "";
-//        start = true;
-        parser();
-
-    }
 
     @FXML
-    private void processMoney (ActionEvent event) {
+    private int processMoney (ActionEvent event) {
+
         String value = ((Button) event.getSource()).getText();
         output.setText(output.getText() + " " + value);
+
+        if (!clik) {
+            switch (value) {
+                case "\u20BD":
+                    trigger = 1;
+                    clik = true;
+                    System.out.println(1);
+                    break;
+                case "€":
+                    trigger = 2;
+                    clik = true;
+                    System.out.println(2);
+                    break;
+                case "$":
+                    trigger = 3;
+                    clik = true;
+                    System.out.println(3);
+                    break;
+                default:
+                    break;
+            }
+        }
+        return trigger;
     }
 
-    private double parser () throws IOException {
-        double b;
-        double d;
-        Document doc = Jsoup.connect("https://cbr.ru/").get();
-        Elements tdElements = doc.getElementsByAttributeValue("class", "weak");
+    @FXML
+    private void processConvert (ActionEvent event) throws IOException {
 
+        int index = output.getText().indexOf(" ");
 
-        String a = tdElements.get(0).ownText();
-        a=a.replace(',','.');
-        b = Double.parseDouble(a);
+        String value3 = (output.getText().substring(0,index));
+        System.out.println(output.getText());
+        num1 = Double.parseDouble(value3);
 
-        String c = tdElements.get(1).ownText();
-        c=c.replace(',','.');
-        d = Double.parseDouble(c);
+        result = (output.getText().substring(output.getText().lastIndexOf(" ")+1));
+        prev = trigger;
+        System.out.println(num1);
+        System.out.println(prev);
+        System.out.println(result);
 
-        System.out.println(b);
-        System.out.println(d);
-
-        return 0;
+        output.setText(String.valueOf(model.convert(num1,prev,result)));
+        operator = "";
+        start = true;
     }
 }
