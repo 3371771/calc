@@ -1,10 +1,13 @@
 package sample;
 
+import javafx.scene.control.Alert;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+
+;
 
 class Model {
 
@@ -14,7 +17,6 @@ class Model {
 
     double calculation(double a, double b, String operator) {
 
-
         switch (operator){
             case "+":
                 return a+b;
@@ -23,8 +25,8 @@ class Model {
             case "*":
                 return a*b;
             case "/":
-                if(b == 0) return 0;
-                //toDo вывод окна На ноль делить нельзя
+                if(b == 0) {errorBox("Ошибка", "На ноль делить нельзя!");}
+                else
                 return a/b;
         }
 
@@ -50,37 +52,36 @@ class Model {
             }
         }
         //евро в
-//        else if (prev == 2) {
-//            //рубль
-//            if (result.equals("\u20BD")) {
-//
-//                itog = a * result1;
-//            }
-//            //доллар
-//            else if (result.equals("$")) {
-//                parser();
-//                itog = a * result1;
-//            }
-//        }
-//        //доллар в
-//        else if (prev == 3) {
-//            //рубль
-//            if (result.equals("\u20BD")) {
-//                parser();
-//                itog = a * result1;
-//            }
-//            //евро
-//            else if (result.equals("€")) {
-//                parser();
-//                itog = a * result1;
-//            }
-//        }
+        else if (prev == 2) {
+            //рубль
+            if (result.equals("\u20BD")) {
+                itog = a * euro;
+            }
+            //доллар
+            else if (result.equals("$")) {
+                //перевдедем евро в рубли
+                double preItog = a*euro;
 
+                //потом рубли в доллары
+                itog = preItog/dollar;
+            }
+        }
+        //доллар в
+        else if (prev == 3) {
+            //рубль
+            if (result.equals("\u20BD")) {
+                itog = a * dollar;
+            }
+            //евро
+            else if (result.equals("€")) {
+                //перевдедем доллары в рубли
+                double preItog = a*dollar;
 
-
+                //потом рубли в евро
+                itog = preItog/euro;
+            }
+        }
         return itog;
-
-
     }
 
     private void parser () throws IOException {
@@ -99,5 +100,14 @@ class Model {
         euroStr = euroStr.replace(',','.');
         euro = Double.parseDouble(euroStr);
 
+    }
+
+    static void errorBox(String infoMessage, String headerMessage)
+    {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(infoMessage);
+
+        alert.setHeaderText(headerMessage);
+        alert.showAndWait();
     }
 }

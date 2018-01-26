@@ -11,25 +11,32 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <StackPane prefHeight="150.0" prefWidth="200.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="300.0" spacing="10.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eaecee" height="100.0" stroke="BLACK" strokeType="INSIDE" width="230.0" StackPane.alignment="CENTER_LEFT">
-               <StackPane.margin>
-                  <Insets left="5.0" />
-               </StackPane.margin></Rectangle>
-             <Text fx:id="output" textAlignment="JUSTIFY">
-               <StackPane.margin>
-                  <Insets bottom="-40.0" />
-               </StackPane.margin>
-               <font>
-                  <Font size="18.0" />
-               </font></Text>
-            <Button mnemonicParsing="false" onAction="#clear" prefHeight="50.0" prefWidth="45.0" text="clear" StackPane.alignment="BOTTOM_RIGHT">
-               <StackPane.margin>
-                  <Insets bottom="9.0" right="5.0" />
-               </StackPane.margin></Button>
+            <StackPane prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eaecee" height="100.0" stroke="BLACK" strokeType="INSIDE" width="230.0" StackPane.alignment="TOP_LEFT">
+                     <StackPane.margin>
+                        <Insets left="9.0" top="10.0" />
+                     </StackPane.margin>
+                  </Rectangle>
+                   <Text fx:id="output" textAlignment="RIGHT" textOrigin="CENTER" StackPane.alignment="CENTER_RIGHT">
+                     <StackPane.margin>
+                        <Insets bottom="-70.0" right="80.0" />
+                     </StackPane.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Button mnemonicParsing="false" onAction="#clear" prefHeight="50.0" prefWidth="50.0" text="clear" StackPane.alignment="BOTTOM_RIGHT">
+                     <StackPane.margin>
+                        <Insets right="9.0" />
+                     </StackPane.margin>
+                  </Button>
+               </children>
+            </StackPane>
          </children>
-      </StackPane>
+      </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
             <Button mnemonicParsing="false" onAction="#processNum" prefHeight="50.0" prefWidth="50.0" text="7" />
@@ -60,13 +67,13 @@
          </children>
       </HBox>
 
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="250.0" spacing="10.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
             <Button mnemonicParsing="false" onAction="#processNum" prefHeight="50.0" prefWidth="50.0" text="0" />
             <Button mnemonicParsing="false" onAction="#processNum" prefHeight="50.0" prefWidth="50.0" text="." />
             <Button mnemonicParsing="false" onAction="#processOperator" prefHeight="50.0" prefWidth="50.0" text="=" />
             <Button mnemonicParsing="false" onAction="#processOperator" prefHeight="50.0" prefWidth="50.0" text="-" />
-            <Button mnemonicParsing="false" onAction="#processConvert" prefHeight="50.0" prefWidth="45.0" text="conv" />
+            <Button mnemonicParsing="false" onAction="#processConvert" prefHeight="50.0" prefWidth="50.0" text="conv" />
          </children>
       </HBox>
    </children>
