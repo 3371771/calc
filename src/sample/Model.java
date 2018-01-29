@@ -7,7 +7,6 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-;
 
 class Model {
 
@@ -16,49 +15,47 @@ class Model {
     private double euro;
 
     double calculation(double a, double b, String operator) {
-
         switch (operator){
             case "+":
-                return a+b;
+                return Math.round(a+b * 1000.0) / 1000.0;
             case "-":
-                return a-b;
+                return Math.round(a-b * 1000.0) / 1000.0;
             case "*":
-                return a*b;
+                return Math.round(a*b * 1000.0) / 1000.0;
             case "/":
                 if(b == 0) {errorBox("Ошибка", "На ноль делить нельзя!");}
                 else
-                return a/b;
+                return  Math.round(a/b * 1000.0) / 1000.0;
         }
-
-        System.out.println("Неизвестный оператор" + operator);
         return 0;
     }
 
-    double convert(double a, int prev, String result) throws IOException {
+    double convert(double a, int thisConv, int toThisConv) throws IOException {
 
         parser();
 
         //рубль в
-        if (prev == 1) {
+        if (thisConv == 1) {
             //доллар
-            if (result.equals("$")) {
+            if (toThisConv == 3) {
                 itog = a/dollar;
             }
             //евро
-            else if (result.equals("€"))
+            else if (toThisConv == 2)
             {
-                parser();
                 itog = a/euro;
             }
         }
         //евро в
-        else if (prev == 2) {
+        else if (thisConv == 2) {
             //рубль
-            if (result.equals("\u20BD")) {
+            if (toThisConv == 1) {
                 itog = a * euro;
+                System.out.println(toThisConv);
+                System.out.println(thisConv);
             }
             //доллар
-            else if (result.equals("$")) {
+            else if (toThisConv == 3) {
                 //перевдедем евро в рубли
                 double preItog = a*euro;
 
@@ -67,13 +64,13 @@ class Model {
             }
         }
         //доллар в
-        else if (prev == 3) {
+        else if (thisConv == 3) {
             //рубль
-            if (result.equals("\u20BD")) {
+            if (toThisConv == 1) {
                 itog = a * dollar;
             }
             //евро
-            else if (result.equals("€")) {
+            else if (toThisConv == 2) {
                 //перевдедем доллары в рубли
                 double preItog = a*dollar;
 
@@ -81,6 +78,7 @@ class Model {
                 itog = preItog/euro;
             }
         }
+        itog = Math.round(itog * 1000.0) / 1000.0;
         return itog;
     }
 
@@ -99,7 +97,6 @@ class Model {
         String euroStr = tdElements.get(1).ownText();
         euroStr = euroStr.replace(',','.');
         euro = Double.parseDouble(euroStr);
-
     }
 
     static void errorBox(String infoMessage, String headerMessage)
@@ -110,4 +107,5 @@ class Model {
         alert.setHeaderText(headerMessage);
         alert.showAndWait();
     }
+
 }

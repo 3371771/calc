@@ -1,0 +1,221 @@
+/* Text Styles */
+hr { color: #000000}
+body, table, tr, th /* Normal */
+{
+ font-size: 15px;
+ font-family: 'Segoe UI';
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.f_BodyText /* Body Text */
+{
+ font-size: 19px;
+ font-family: 'Courier New';
+}
+span.f_Callouts /* Callouts */
+{
+ font-size: 13px;
+ font-family: Verdana;
+ letter-spacing: -1px;
+}
+span.f_CodeExample /* Code Example */
+{
+ font-size: 13px;
+ font-family: 'Courier New';
+}
+span.f_Comment /* Comment */
+{
+}
+span.f_Heading1 /* Heading1 */
+{
+ font-size: 21px;
+ font-weight: bold;
+ color: #ffffff;
+}
+span.f_Heading1Black /* Heading1 Black */
+{
+ font-size: 21px;
+ font-weight: bold;
+}
+span.f_Heading2 /* Heading2 */
+{
+ font-size: 19px;
+ font-weight: bold;
+}
+span.f_Heading3 /* Heading3 */
+{
+ font-size: 16px;
+ font-weight: bold;
+}
+span.f_ImageCaption /* Image Caption */
+{
+ font-style: italic;
+}
+span.f_Notes /* Notes */
+{
+ font-style: italic;
+}
+span.f_NotesBox /* NotesBox */
+{
+ font-style: italic;
+}
+span.f_PopupBox /* Popup Box */
+{
+ font-size: 12px;
+}
+span.f_SeeAlso /* SeeAlso */
+{
+ font-size: 16px;
+ font-family: 'Segoe UI Semibold';
+}
+span.f_T_Code /* T_Code */
+{
+ font-family: 'Courier New';
+ letter-spacing: -1px;
+}
+span.f_T_Emphasis /* T_Emphasis */
+{
+ font-size: 13px;
+ font-weight: bold;
+}
+span.f_T_Entry /* T_Entry */
+{
+ font-family: 'Courier New';
+ font-weight: bold;
+ letter-spacing: -1px;
+}
+span.f_T_Entry10pt /* T_Entry 10pt */
+{
+ font-size: 13px;
+ font-family: 'Courier New';
+ font-style: italic;
+ font-weight: bold;
+ letter-spacing: -1px;
+}
+span.f_T_Menu /* T_Menu */
+{
+ font-family: 'Segoe UI Semibold';
+}
+span.f_T_Menu10p /* T_Menu 10p */
+{
+ font-family: 'Segoe UI Semibold';
+}
+span.f_TipBody /* Tip Body */
+{
+ font-family: Verdana;
+ letter-spacing: -1px;
+}
+span.f_TipHeading /* Tip Heading */
+{
+ font-family: Tahoma;
+ font-weight: bold;
+}
+/* Paragraph styles */
+p /* Normal */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.p_BodyText /* Body Text */
+{
+ margin: 0px 0px 10px 0px;
+}
+.p_Callouts /* Callouts */
+{
+ margin: 0px 0px 5px 0px;
+}
+.p_CodeExample /* Code Example */
+{
+ white-space: nowrap;
+}
+.p_Comment /* Comment */
+{
+ text-align: center;
+}
+.p_Heading1 /* Heading1 */
+{
+ font-size: 100%;
+ font-weight: normal;
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.p_Heading1Black /* Heading1 Black */
+{
+ font-size: 100%;
+ font-weight: normal;
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.p_Heading2 /* Heading2 */
+{
+ font-size: 100%;
+ font-weight: normal;
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.p_Heading3 /* Heading3 */
+{
+ font-size: 100%;
+ font-weight: normal;
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.p_ImageCaption /* Image Caption */
+{
+}
+.p_Notes /* Notes */
+{
+}
+.p_NotesBox /* NotesBox */
+{
+ margin: 10px 0px 0px 0px;
+}
+.p_PopupBox /* Popup Box */
+{
+}
+.p_SeeAlso /* SeeAlso */
+{
+ margin: 10px 0px 0px 0px;
+}
+.p_TipBody /* Tip Body */
+{
+}
+.p_TipHeading /* Tip Heading */
+{
+}
+
+
+#hmpopupdiv /* used for javascript text popups */
+{
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  background-color: #FFFFFF;
+  padding: 6px;
+  border:1px solid #000000;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px #888;
+}
+
+#hmlightbox /* image lightbox */
+{
+  border: none;
+  padding: 8px;
+  background: #FFF;
+  font-size: 110%;
+  font-weight: bold;
+  color: #777;
+  box-shadow: 5px 5px 5px #888;
+}
