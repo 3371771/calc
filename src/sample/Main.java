@@ -21,7 +21,6 @@ public class Main extends Application {
 
         root.setOnKeyPressed(ke -> {
             if (ke.getCode().equals(KeyCode.F1))
-                System.out.println("f1");
             Manual.display();
         });
     }
