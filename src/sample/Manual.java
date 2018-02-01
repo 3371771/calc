@@ -19,6 +19,7 @@ public class Manual {
         windowAbout.setX(10);
         windowAbout.setY(10);
 
+        //создаем и подключаем WebView с файлом справки
         WebView webView = new WebView();
         WebEngine engine = webView.getEngine();
         engine.load(Manual.class.getClassLoader().getResource("res/HTML/index.html").toExternalForm());

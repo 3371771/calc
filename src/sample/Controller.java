@@ -15,17 +15,20 @@ public class Controller {
     private double num2 = 0;
     private int trigger = 0;
 
-    private boolean clik = false;
-    private boolean start = false;
+    private boolean click = false;
 
     private String operator = "";
     private Model model = new Model();
 
     @FXML
+    //обработка нажатия на кнопки-цифры
     private void processNum (ActionEvent event) {
+        //считываем значение с нажатой кнопки
         String value = ((Button) event.getSource()).getText();
 
+        //проверяем не привышен ли лимит символов в окне
         if (output.toString().length() > 225) {
+            //если да обрабатываем, как ошибку
             soMany();
         } else
             {
@@ -34,47 +37,51 @@ public class Controller {
     }
 
     @FXML
+    //обработка нажатия на кнопки-операторы вычисленйи
     private void processOperator (ActionEvent event) {
         if (output.toString().length() > 225) {
             soMany();
         } else {
+            //задаем переменную для последующей вырезки необходимой части текста
             int index = output.getText().indexOf(" ");
 
+            //считываем значение с нажатой кнопки
             String value = ((Button) event.getSource()).getText();
+            //проверяем какой из операторов был введен
             if (!"=".equals(value)) {
-                System.out.println("Нажато не равно");
                 if (!operator.isEmpty()) return;
                 else {
                 operator = value;
+                //выводим все данне на дисплей
                 output.setText(output.getText() + " " + operator + " ");
                 }
-
             } else {
                 if (operator.isEmpty()) return;
-//режем и парсим первое число
+
+                //режем и парсим первое число
                 String value3 = (output.getText().substring(0, index));
-                System.out.println(output.getText());
                 num1 = Double.parseDouble(value3);
-//режем и парсим второе число
+
+                //режем и парсим второе число
                 String value2 = (output.getText().substring(output.getText().lastIndexOf(" ") + 1));
                 num2 = Double.parseDouble(value2);
 
-                //считаем
+                //считаем и выводим результат
                 output.setText(String.valueOf(model.calculation(num1, num2, operator)));
                 operator = "";
-                start = true;
             }
         }
     }
 
     @FXML
+    //функция для очистки дисплея
     private void clear (ActionEvent event) {
        output.setText("");
-       start = false;
-       clik = false;
+       click = false;
     }
 
     @FXML
+    //обработка нажатия на кнопки-валюты
     private int processMoney (ActionEvent event) {
         if (output.toString().length() > 225) {
             soMany();
@@ -82,37 +89,40 @@ public class Controller {
             String value = ((Button) event.getSource()).getText();
             output.setText(output.getText() + " " + value);
 
-            if (!clik) {
+            if (!click) {
                 output.setText(output.getText() + "->");
                 //проверяем было ли ранее что-то ввидено
                 //проверяем что будем конвертировать и присваеваем значение переменной trigger
+                // (не считываем на прямую, т.к.на разных ПК разные кодировки и работает не всегда корректно
                 //переводим указатель нажатия clik = true
                 switch (value) {
                     case "\u20BD":
                         trigger = 1;
-                        clik = true;
+                        click = true;
                         break;
                     case "€":
                         trigger = 2;
-                        clik = true;
+                        click = true;
                         break;
                     case "$":
                         trigger = 3;
-                        clik = true;
+                        click = true;
                         break;
                     default:
                         break;
                 }
             }
         }
-        //получаем что хотим конвертировать
+        //получаем значение переменной для того, что хотим конвертировать
             return trigger;
         }
 
     @FXML
+    //обработка нажатия на кнопку conv
     private void processConvert (ActionEvent event) throws IOException {
         int index = output.getText().indexOf(" ");
 
+        //счиывваем количестов конвертируемой валюты
         String valueNumConv = (output.getText().substring(0,index));
         num1 = Double.parseDouble(valueNumConv);
 
@@ -136,11 +146,12 @@ public class Controller {
         }
         int thisConv = trigger;
 
+        //конвертируем
         output.setText(String.valueOf(model.convert(num1, thisConv,toThisConv)));
         operator = "";
-        start = true;
     }
 
+    //функция вывода ошибки при превышении лимита ввода
     private void soMany () {
         Model.errorBox("Ошибка!", "Слишком много символов. Очистите поле и попробуйте еще раз!");
         output.setText("Очень много символов!!");

@@ -7,31 +7,35 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-
 class Model {
 
     private double itog = 0;
     private double dollar;
     private double euro;
 
+    //функция подсчета
     double calculation(double a, double b, String operator) {
+        //в зависимости от оператора счтиаем и округляем до 3-х знаков после запятой
         switch (operator){
             case "+":
-                return Math.round(a+b * 1000.0) / 1000.0;
+                return Math.round((a+b) * 1000.0) / 1000.0;
             case "-":
-                return Math.round(a-b * 1000.0) / 1000.0;
+                return Math.round((a-b) * 1000.0) / 1000.0;
             case "*":
-                return Math.round(a*b * 1000.0) / 1000.0;
+                return Math.round((a*b) * 1000.0) / 1000.0;
             case "/":
+                //обработка ошибки "на ноль делить нельзя"
                 if(b == 0) {errorBox("Ошибка", "На ноль делить нельзя!");}
                 else
-                return  Math.round(a/b * 1000.0) / 1000.0;
+                return  Math.round((a/b) * 1000.0) / 1000.0;
         }
         return 0;
     }
 
+    //функция конвертирования
     double convert(double a, int thisConv, int toThisConv) throws IOException {
 
+        //сперва получаем актуальных значения курсов валют
         parser();
 
         //рубль в
@@ -51,8 +55,6 @@ class Model {
             //рубль
             if (toThisConv == 1) {
                 itog = a * euro;
-                System.out.println(toThisConv);
-                System.out.println(thisConv);
             }
             //доллар
             else if (toThisConv == 3) {
@@ -78,13 +80,15 @@ class Model {
                 itog = preItog/euro;
             }
         }
+        //округляем
         itog = Math.round(itog * 1000.0) / 1000.0;
         return itog;
     }
 
+    //парсер
     private void parser () throws IOException {
 
-        //клннект и парсинг нужного тэга
+        //коннект и парсинг нужного тэга
         Document doc = Jsoup.connect("https://cbr.ru/").get();
         Elements tdElements = doc.getElementsByAttributeValue("class", "weak");
 
@@ -99,6 +103,7 @@ class Model {
         euro = Double.parseDouble(euroStr);
     }
 
+    //функция вывода окна ошибки
     static void errorBox(String infoMessage, String headerMessage)
     {
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -107,5 +112,4 @@ class Model {
         alert.setHeaderText(headerMessage);
         alert.showAndWait();
     }
-
 }
