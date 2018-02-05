@@ -37,7 +37,7 @@ public class Controller {
     }
 
     @FXML
-    //обработка нажатия на кнопки-операторы вычисленйи
+    //обработка нажатия на кнопки-операторы вычислений
     private void processOperator (ActionEvent event) {
         if (output.toString().length() > 225) {
             soMany();
@@ -77,6 +77,7 @@ public class Controller {
     //функция для очистки дисплея
     private void clear (ActionEvent event) {
        output.setText("");
+       operator = "";
        click = false;
     }
 
@@ -149,6 +150,7 @@ public class Controller {
         //конвертируем
         output.setText(String.valueOf(model.convert(num1, thisConv,toThisConv)));
         operator = "";
+        click = false;
     }
 
     //функция вывода ошибки при превышении лимита ввода
